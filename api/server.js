@@ -4,6 +4,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 
+
+// ROUTERS IMPORT
+const departmentRouter = require("./routers/department.router")
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
@@ -17,12 +20,10 @@ mongoose.connect('mongodb://localhost:27017/LearningMangementSystem').then(db=>{
     console.log("MongoDb error",e)
 })
 
+//ROUTERS
+app.use("/api/department", departmentRouter
 
-app.get("/test",(req, res)=>{
-    res.send({id:1, Massage: "Welcome, it is working"})
-})
-
-
+)
 const PORT = process.env.PORT
 app.listen(PORT,()=>{
     console.log("Server is Running at PORT=>",PORT)

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon server.js",
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,10 +19,13 @@
   "homepage": "https://github.com/Barunkrsingh/LMS-Learning-Management-System#readme",
   "description": "",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.0.0",
     "express": "^5.1.0",
+    "formidable": "^3.5.4",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.1"
   },
   "devDependencies": {
