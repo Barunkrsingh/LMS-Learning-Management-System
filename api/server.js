@@ -5,6 +5,15 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+app.use(cors());
+app.use(cookieParser());
+
+// MONGODB CONNECTION
+mongoose.connect('mongodb://localhost:27017/LearningMangementSystem').then(db=>{
+    console.log("MongoDb is connected Sucessfully.")
+}).catch(e=>{
+    console.log("MongoDb error",e)
+})
 
 const PORT = process.env.PORT
 app.listen(PORT,()=>{
