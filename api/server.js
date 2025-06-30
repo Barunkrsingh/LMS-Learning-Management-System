@@ -7,4 +7,6 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 const PORT = process.env.PORT
-app.listen(PORT)
+app.listen(PORT,()=>{
+    console.log("Server is Running at PORT=>",PORT)
+})
