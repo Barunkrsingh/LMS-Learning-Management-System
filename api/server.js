@@ -6,5 +6,5 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
-const PORT = 
+const PORT = process.env.PORT
 app.listen(PORT)
