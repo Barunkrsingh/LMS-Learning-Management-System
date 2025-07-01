@@ -87,7 +87,7 @@ getAllDepartments: async(req, res)=>{
 },
 getDepartmentOwnData: async(req, res)=>{
     try {
-        const id= "";
+        const id = req.user.id;
         const department = await Department.findOne({_id:id});
         if(department){
             res.status(200).json({success:true, department})
@@ -101,7 +101,7 @@ getDepartmentOwnData: async(req, res)=>{
 },
 updateDepartment: async(req, res)=>{  
     try{
-        const id = '';
+        const id = req.user.id;
         const form = new formidable.IncomingForm();
         form.parse(req, async(err, fields, files)=>{
 

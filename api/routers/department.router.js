@@ -1,4 +1,5 @@
 const express = require("express");
+const authMiddleware = require('../auth/auth')
 const { registerDepartment, getAllDepartments, loginDepartment, updateDepartment, getDepartmentOwnData } = require("../controllers/department.controller");
 
 const router = express.Router();
@@ -6,8 +7,8 @@ const router = express.Router();
 router.post("/register",registerDepartment);
 router.get("/all", getAllDepartments);
 router.get("/login", loginDepartment);
-router.patch("/update", updateDepartment);
-router.get("/fetch-single", getDepartmentOwnData);
+router.patch("/update", authMiddleware(['DEPARTMENT']), updateDepartment); // AUTHENTICATED USER FOR UPDATE
+router.get("/fetch-single", authMiddleware(['DEPARTMENT']), getDepartmentOwnData);
 
 
 
