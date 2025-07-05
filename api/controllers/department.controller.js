@@ -15,6 +15,12 @@ module.exports={
     try{
           const form = new formidable.IncomingForm();
         form.parse(req, async(err, fields, files)=>{
+            const department = await Department.findOne({email:fields.email[0]});
+            if(department){
+                return res.status(409).json({success:false, message:"Email is already registered."})
+            }else{
+
+            
             const photo = files.image[0];
             let filepath = photo.filepath;
             let originalFilename = photo.originalFilename.replace("","_"); //photo one
@@ -29,25 +35,25 @@ module.exports={
                 department_name:fields.department_name[0],
                 email:fields.email[0],
                 owner_name:fields.owner_name[0],
+                department_image:originalFilename,
                 password:hashPassword
             })
 
             const savedDepartment = await newDepartment.save();
             res.status(200).json({success:true,data:savedDepartment, message:"Department is Registered Successfully."})
+        }
         })
     
     }catch (error){
         res.status(500).json({success:false, message:"Department Registration Failed"})
     }
 },
-loginDepartment: async(req,res)=>{
-
-    try{
+loginDepartment: async(req, res)=>{
+     try{
         const department = await Department.findOne({email:req.body.email});
         if(department){
             const isAuth = bcrypt.compareSync(req.body.password, department.password);
             if(isAuth){
-
                 const jwtSecret = process.env.JWT_SECRET;
                 const token = jwt.sign({
                     id:department._id,
@@ -67,7 +73,7 @@ loginDepartment: async(req,res)=>{
                     }
                 })
             }else{
-                res.status(401).json({success:false, message:"Password is incorrect."})
+                res.status(401).json({success:false, message:"Password is Incorrect."})
             }
 
         }else{

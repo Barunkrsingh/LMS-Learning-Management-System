@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/register",registerDepartment);
 router.get("/all", getAllDepartments);
-router.get("/login", loginDepartment);
+router.post("/login", loginDepartment);
 router.patch("/update", authMiddleware(['DEPARTMENT']), updateDepartment); // AUTHENTICATED USER FOR UPDATE
 router.get("/fetch-single", authMiddleware(['DEPARTMENT']), getDepartmentOwnData);
 
