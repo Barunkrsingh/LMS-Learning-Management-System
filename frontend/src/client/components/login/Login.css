@@ -1,0 +1,7 @@
+.container-login {
+    width: 40vw;
+    max-width: 600px;
+    background-color: rgba(2, 12, 15, 0.493);
+    padding: 20px; /* Optional: Add padding for better spacing */
+    border-radius: 10px; /* Optional: Rounded corners */
+}
